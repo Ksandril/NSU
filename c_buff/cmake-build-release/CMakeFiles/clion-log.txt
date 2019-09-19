@@ -1,0 +1,4 @@
+"D:\CLion 2019.2.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - MinGW Makefiles" D:\prog\c_buff
+-- Configuring done
+-- Generating done
+-- Build files have been written to: D:/prog/c_buff/cmake-build-release
