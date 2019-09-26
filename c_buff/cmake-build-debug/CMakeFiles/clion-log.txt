@@ -1,4 +1,4 @@
-"D:\CLion 2019.2.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" D:\prog\c_buff
+"C:\Program Files\JetBrains\CLion 2018.3.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=D:/mingw/mingw64/bin/mingw32-make.exe -G "CodeBlocks - MinGW Makefiles" E:\prog\oop\NSU-master\c_buff
 -- Configuring done
 -- Generating done
--- Build files have been written to: D:/prog/c_buff/cmake-build-debug
+-- Build files have been written to: E:/prog/oop/NSU-master/c_buff/cmake-build-debug

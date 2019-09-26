@@ -1,6 +1,9 @@
 #pragma once
 
 #include <stdexcept >
+#include <cstdlib>
+#include <algorithm>
+////TODO хуйня - не работают удаление,ресайз и нью капасити + тесты!
 
 template<class T>
 class CircularBuffer {
@@ -110,15 +113,28 @@ public:
 
     //Сдвигает буфер так, что по нулевому индексу окажется элемент
     //с индексом new_begin.
-    void rotate(int new_start);
+    void rotate(int new_start) {
+        std::rotate(buffer, buffer + new_start, buffer + capacity);
+        back = back >= new_start ? back - new_start : capacity + back - new_start;
+        front = front >= new_start ? front - new_start : capacity + front - new_start;
+    }
 
     //Линеаризация - сдвинуть кольцевой буфер так, что его первый элемент
     //переместится в начало аллоцированной памяти. Возвращает указатель
     //на первый элемент.
-    T *linearize();
+    T *linearize() {////перепроверь
+        std::rotate(buffer, buffer + front, buffer + capacity);
+        back = back >= front ? back - front : capacity + back - front;
+        front = 0;
+
+
+        return buffer;
+    }
 
     //Проверяет, является ли буфер линеаризованным.
-    bool is_linearized() const;
+    bool is_linearized() const {
+        return front == 0;
+    }
 
     void set_capacity(int new_capacity_);
 
@@ -129,7 +145,7 @@ public:
     //Обменивает содержимое буфера с буфером cb.
     void swap(CircularBuffer &cb);
 
-    //Вставляет элемент item по индексу pos. Ёмкость буфера остается неизменной.
+    //Вставляет элемент item по индексу pos.
     void insert(int pos, const T &item = T());
 
     //Удаляет элементы из буфера в интервале [first, last).
@@ -226,8 +242,11 @@ void CircularBuffer<T>::swap(CircularBuffer &cb) {
 template<class T>
 bool operator==(const CircularBuffer<T> &a, const CircularBuffer<T> &b) {
     if (a.size != b.size && a.back != b.back && a.front && b.front && a.capacity != b.capacity) return false;
-    for (size_t i = 0; i < a.size; ++i) {
-        if (a.buffer[i] != b.buffer[i]) return false;
+    int aux = a.front;
+    int end = a.back;
+    while (aux != end) {
+        if (a[aux] != b[aux]) return false;
+        aux = (aux + 1) % a.capacity;
     }
     return true;
 
@@ -279,6 +298,46 @@ void CircularBuffer<T>::push_back(const T &item) {
     buffer[back] = item;
 }
 
+template<class T>
+
+void CircularBuffer<T>::insert(int pos, const T &item) {
+    rotate(front);
+    if (reserve() == 0) {
+        T aux = buffer[back];
+        for (size_t i = back; i > pos; i--) {
+            buffer[i] = buffer[(i - 1)];
+        }
+        buffer[front] = aux;
+
+    } else {
+
+        for (size_t i = size; i > pos; i--) {
+            buffer[i] = buffer[(i - 1)];
+        }
+        ++size;
+    }
+    buffer[pos] = item;
+
+
+}
+
+template<class T>
+void CircularBuffer<T>::erase(int first, int last) {
+    size_t count = last - first + 1;
+    first = (front + first) % capacity;
+    size_t counter = front + size - 1;
+    for (size_t k = 0; k < count; ++k) {
+        for (size_t i = first; i < counter; i++) {
+            std::swap(buffer[i % capacity], buffer[(i + 1) % capacity]);
+        }
+    }
+
+    back = back >= count ? back - count : capacity + back - count;
+
+    size = size >= count ? size - count : capacity + size - count;
+}
+
+
 ///исключение при удалении из пустой очереди  TODO
 template<class T>
 void CircularBuffer<T>::pop_front() {
@@ -299,31 +358,35 @@ void CircularBuffer<T>::pop_back() {
 }
 
 
-template <class T> //// не тестил
-void CircularBuffer<T> ::set_capacity(int new_capacity_) {
-    T *new_buff = new T[new_capacity_];
-    size_t copy_size = new_capacity_ < capacity ? new_capacity_: capacity;
-    std:: copy(buffer, buffer +copy_size, new_buff);
-    delete[] buffer;
-    this-> buffer = new_buff;
+template<class T>
+void CircularBuffer<T>::set_capacity(int new_capacity_) {
+    if(capacity != new_capacity_) {
+        T *new_buff = new T[new_capacity_];
+        rotate(front);
+        size_t copy_size = new_capacity_ < capacity ? new_capacity_ : capacity;
+        std::copy(buffer, buffer + copy_size, new_buff);
+        delete[] buffer;
+        this->buffer = new_buff;
+    }
 }
 
-template  <class T> ///не тестил
-void CircularBuffer<T> ::resize(int new_size, const T &item)  {
-   capacity = new_size > capacity? new_size : capacity;
-   T *new_buff = new T[capacity];
-   size_t copy_size;
-   if (new_size > size){
-       copy_size = size;
-       std:: copy(buffer,buffer + copy_size,new_buff);
-       std:: fill(new_buff+copy_size,new_buff + new_size,item);
-   }else{
-       copy_size = new_size;
-       std::copy(buffer,buffer + copy_size, new_buff);
-   }
-   delete[] buffer;
-   this -> buffer = new_buff;
-   size = new_size;
+template<class T>
+void CircularBuffer<T>::resize(int new_size, const T &item) {
+    rotate(front);
+    capacity = new_size > capacity ? new_size : capacity;
+    T *new_buff = new T[capacity];
+    size_t copy_size;
+    if (new_size > size) {
+        copy_size = size;
+        std::copy(buffer, buffer + copy_size, new_buff);
+        std::fill(new_buff + copy_size, new_buff + new_size, item);
+    } else {
+        copy_size = new_size;
+        std::copy(buffer, buffer + copy_size, new_buff);
+    }
+    delete[] buffer;
+    this->buffer = new_buff;
+    size = new_size;
 
 
 }

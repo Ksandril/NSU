@@ -6,17 +6,21 @@
 
 #IncludeRegexTransform: 
 
-D:/prog/c_buff/circular_buffer.h
+E:/prog/oop/NSU-master/c_buff/circular_buffer.h
 stdexcept 
 -
+cstdlib
+-
+algorithm
+-
 
-D:/prog/c_buff/main.cpp
+E:/prog/oop/NSU-master/c_buff/main.cpp
 iostream
 -
 circular_buffer.h
-D:/prog/c_buff/circular_buffer.h
+E:/prog/oop/NSU-master/c_buff/circular_buffer.h
 
-D:/prog/c_buff/tests/catch.hpp
+E:/prog/oop/NSU-master/c_buff/tests/catch.hpp
 sstream
 -
 algorithm
@@ -194,7 +198,7 @@ algorithm
 map
 -
 Foundation/Foundation.h
-D:/prog/c_buff/tests/Foundation/Foundation.h
+E:/prog/oop/NSU-master/c_buff/tests/Foundation/Foundation.h
 map
 -
 sstream
@@ -260,9 +264,9 @@ cfloat
 cstdio
 -
 
-D:/prog/c_buff/tests/tests.cpp
+E:/prog/oop/NSU-master/c_buff/tests/tests.cpp
 catch.hpp
-D:/prog/c_buff/tests/catch.hpp
+E:/prog/oop/NSU-master/c_buff/tests/catch.hpp
 ../circular_buffer.h
-D:/prog/c_buff/circular_buffer.h
+E:/prog/oop/NSU-master/c_buff/circular_buffer.h
 

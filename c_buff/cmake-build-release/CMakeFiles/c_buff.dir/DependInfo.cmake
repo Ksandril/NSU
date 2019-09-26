@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "D:/prog/c_buff/main.cpp" "D:/prog/c_buff/cmake-build-release/CMakeFiles/c_buff.dir/main.cpp.obj"
-  "D:/prog/c_buff/tests/tests.cpp" "D:/prog/c_buff/cmake-build-release/CMakeFiles/c_buff.dir/tests/tests.cpp.obj"
+  "E:/prog/oop/NSU-master/c_buff/main.cpp" "E:/prog/oop/NSU-master/c_buff/cmake-build-release/CMakeFiles/c_buff.dir/main.cpp.obj"
+  "E:/prog/oop/NSU-master/c_buff/tests/tests.cpp" "E:/prog/oop/NSU-master/c_buff/cmake-build-release/CMakeFiles/c_buff.dir/tests/tests.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

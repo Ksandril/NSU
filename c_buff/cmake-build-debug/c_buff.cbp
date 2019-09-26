@@ -8,88 +8,88 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="D:/prog/c_buff/cmake-build-debug"/>
+				<Option working_dir="E:/prog/oop/NSU-master/c_buff/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="D:/CLion 2019.2.1/mingw/mingw32/bin/mingw32-make.exe -f &quot;D:/prog/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="D:/CLion 2019.2.1/mingw/mingw32/bin/mingw32-make.exe -f &quot;D:/prog/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/CLion 2019.2.1/mingw/mingw32/bin/mingw32-make.exe -f &quot;D:/prog/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/CLion 2019.2.1/mingw/mingw32/bin/mingw32-make.exe -f &quot;D:/prog/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/prog/oop/NSU-master/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="D:/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/prog/oop/NSU-master/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/prog/oop/NSU-master/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/prog/oop/NSU-master/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="c_buff">
-				<Option output="D:/prog/c_buff/cmake-build-debug/c_buff.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="D:/prog/c_buff/cmake-build-debug"/>
+				<Option output="E:/prog/oop/NSU-master/c_buff/cmake-build-debug/c_buff.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/prog/oop/NSU-master/c_buff/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="D:/CLion 2019.2.1/mingw/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
-					<Add directory="D:/CLion 2019.2.1/mingw/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
-					<Add directory="D:/CLion 2019.2.1/mingw/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
-					<Add directory="D:/CLion 2019.2.1/mingw/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
-					<Add directory="D:/CLion 2019.2.1/mingw/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
-					<Add directory="D:/CLion 2019.2.1/mingw/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+					<Add directory="D:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="D:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="D:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="D:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="D:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="D:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="D:/CLion 2019.2.1/mingw/mingw32/bin/mingw32-make.exe -f &quot;D:/prog/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 c_buff"/>
-					<CompileFile command="D:/CLion 2019.2.1/mingw/mingw32/bin/mingw32-make.exe -f &quot;D:/prog/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/CLion 2019.2.1/mingw/mingw32/bin/mingw32-make.exe -f &quot;D:/prog/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/CLion 2019.2.1/mingw/mingw32/bin/mingw32-make.exe -f &quot;D:/prog/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/prog/oop/NSU-master/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 c_buff"/>
+					<CompileFile command="D:/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/prog/oop/NSU-master/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/prog/oop/NSU-master/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/prog/oop/NSU-master/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="c_buff/fast">
-				<Option output="D:/prog/c_buff/cmake-build-debug/c_buff.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="D:/prog/c_buff/cmake-build-debug"/>
+				<Option output="E:/prog/oop/NSU-master/c_buff/cmake-build-debug/c_buff.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/prog/oop/NSU-master/c_buff/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="D:/CLion 2019.2.1/mingw/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
-					<Add directory="D:/CLion 2019.2.1/mingw/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
-					<Add directory="D:/CLion 2019.2.1/mingw/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
-					<Add directory="D:/CLion 2019.2.1/mingw/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
-					<Add directory="D:/CLion 2019.2.1/mingw/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
-					<Add directory="D:/CLion 2019.2.1/mingw/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+					<Add directory="D:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="D:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="D:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="D:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="D:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="D:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="D:/CLion 2019.2.1/mingw/mingw32/bin/mingw32-make.exe -f &quot;D:/prog/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 c_buff/fast"/>
-					<CompileFile command="D:/CLion 2019.2.1/mingw/mingw32/bin/mingw32-make.exe -f &quot;D:/prog/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/CLion 2019.2.1/mingw/mingw32/bin/mingw32-make.exe -f &quot;D:/prog/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/CLion 2019.2.1/mingw/mingw32/bin/mingw32-make.exe -f &quot;D:/prog/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/prog/oop/NSU-master/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 c_buff/fast"/>
+					<CompileFile command="D:/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/prog/oop/NSU-master/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/prog/oop/NSU-master/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/prog/oop/NSU-master/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="D:/prog/c_buff/cmake-build-debug"/>
+				<Option working_dir="E:/prog/oop/NSU-master/c_buff/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="D:/CLion 2019.2.1/mingw/mingw32/bin/mingw32-make.exe -f &quot;D:/prog/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="D:/CLion 2019.2.1/mingw/mingw32/bin/mingw32-make.exe -f &quot;D:/prog/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/CLion 2019.2.1/mingw/mingw32/bin/mingw32-make.exe -f &quot;D:/prog/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/CLion 2019.2.1/mingw/mingw32/bin/mingw32-make.exe -f &quot;D:/prog/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/prog/oop/NSU-master/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="D:/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/prog/oop/NSU-master/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/prog/oop/NSU-master/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/prog/oop/NSU-master/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="D:/prog/c_buff/cmake-build-debug"/>
+				<Option working_dir="E:/prog/oop/NSU-master/c_buff/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="D:/CLion 2019.2.1/mingw/mingw32/bin/mingw32-make.exe -f &quot;D:/prog/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="D:/CLion 2019.2.1/mingw/mingw32/bin/mingw32-make.exe -f &quot;D:/prog/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/CLion 2019.2.1/mingw/mingw32/bin/mingw32-make.exe -f &quot;D:/prog/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/CLion 2019.2.1/mingw/mingw32/bin/mingw32-make.exe -f &quot;D:/prog/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/prog/oop/NSU-master/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="D:/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/prog/oop/NSU-master/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/prog/oop/NSU-master/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/mingw/mingw64/bin/mingw32-make.exe -f &quot;E:/prog/oop/NSU-master/c_buff/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="D:/prog/c_buff/circular_buffer.h">
+		<Unit filename="E:/prog/oop/NSU-master/c_buff/circular_buffer.h">
 			<Option target="c_buff"/>
 		</Unit>
-		<Unit filename="D:/prog/c_buff/main.cpp">
+		<Unit filename="E:/prog/oop/NSU-master/c_buff/main.cpp">
 			<Option target="c_buff"/>
 		</Unit>
-		<Unit filename="D:/prog/c_buff/tests/tests.cpp">
+		<Unit filename="E:/prog/oop/NSU-master/c_buff/tests/tests.cpp">
 			<Option target="c_buff"/>
 		</Unit>
-		<Unit filename="D:/prog/c_buff/CMakeLists.txt">
+		<Unit filename="E:/prog/oop/NSU-master/c_buff/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
