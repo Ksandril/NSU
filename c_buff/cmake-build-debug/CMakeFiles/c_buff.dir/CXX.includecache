@@ -14,12 +14,6 @@ cstdlib
 algorithm
 -
 
-E:/prog/oop/NSU-master/c_buff/main.cpp
-iostream
--
-circular_buffer.h
-E:/prog/oop/NSU-master/c_buff/circular_buffer.h
-
 E:/prog/oop/NSU-master/c_buff/tests/catch.hpp
 sstream
 -

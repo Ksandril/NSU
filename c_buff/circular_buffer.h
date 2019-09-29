@@ -3,16 +3,16 @@
 #include <stdexcept >
 #include <cstdlib>
 #include <algorithm>
-////TODO хуйня - не работают удаление,ресайз и нью капасити + тесты!
+///#define work 25
 
 template<class T>
 class CircularBuffer {
 private:
     T *buffer;
-    size_t front;
-    size_t back;
-    size_t size;
-    size_t capacity;
+    int front;
+    int back;
+    int size;
+    int capacity;
 
 
 public:
@@ -34,7 +34,7 @@ public:
     //Оператор присваивания.
     CircularBuffer &operator=(const CircularBuffer &cb) {
         if (this != &cb) {
-            CircularBuffer(cb).swap(&this);
+            CircularBuffer(cb).swap(*this);
         }
         return *this;
     }
@@ -93,7 +93,7 @@ public:
 
     //Проверяем, пустой ли буфер (если ёмкость = 0, то false)
     bool empty() const {
-        return size;
+        return size == 0;
     }
 
     //Добавляет элемент в конец буфера.
@@ -122,7 +122,7 @@ public:
     //Линеаризация - сдвинуть кольцевой буфер так, что его первый элемент
     //переместится в начало аллоцированной памяти. Возвращает указатель
     //на первый элемент.
-    T *linearize() {////перепроверь
+    T *linearize() {
         std::rotate(buffer, buffer + front, buffer + capacity);
         back = back >= front ? back - front : capacity + back - front;
         front = 0;
@@ -167,16 +167,29 @@ public:
 
     ////функции для отладки
     void print_buffer() {
-        for (size_t i = 0; i < capacity; ++i) {
+        for (auto i = 0; i < capacity; ++i) {
             std::cout << buffer[i] << " ";
         }
-    };
+    }
+
+    bool check_buffer(int i, int elem) {
+        return buffer[i] == elem;
+    }
+
+    int get_front_index() const {
+        return front;
+    }
+
+    int get_back_index() const {
+        return back;
+    }
 
     void print_private() {
         std::cout << "[front] =" << front << std::endl;
         std::cout << "[back] =" << back << std::endl;
         std::cout << " size ==" << size << std::endl;
     }
+
 };
 
 
@@ -193,22 +206,33 @@ CircularBuffer<T>::CircularBuffer() {
 
 template<class T>
 CircularBuffer<T>::CircularBuffer(int cap) {
-    front = -1;
-    back = 0;
-    size = 0;
-    capacity = cap;
-    buffer = new T[capacity];
+    if(cap <=0){
+        throw std::invalid_argument("capacity should be >0");
+
+    }else {
+        front = -1;
+        back = 0;
+        size = 0;
+        capacity = cap;
+        buffer = new T[capacity];
+    }
 }
 
 
 template<class T>
 CircularBuffer<T>::CircularBuffer(int cap, const T &elem) {
-    front = 0;
-    capacity = cap;
-    size = capacity;
-    back = size - 1;
-    buffer = new T[capacity];
-    std::fill(buffer, buffer + size, elem);
+        if(cap <=0){
+            throw std::invalid_argument("capacity should be >0");
+
+    }
+        else {
+            front = 0;
+            capacity = cap;
+            size = capacity;
+            back = size - 1;
+            buffer = new T[capacity];
+            std::fill(buffer, buffer + size, elem);
+        }
 }
 
 template<class T>
@@ -241,12 +265,16 @@ void CircularBuffer<T>::swap(CircularBuffer &cb) {
 /// УЪУ ПЕРЕГРУЗКА ОПЕРАТОРОВ ЧЕРЕЗ ДРУЗЕЙ
 template<class T>
 bool operator==(const CircularBuffer<T> &a, const CircularBuffer<T> &b) {
-    if (a.size != b.size && a.back != b.back && a.front && b.front && a.capacity != b.capacity) return false;
-    int aux = a.front;
-    int end = a.back;
-    while (aux != end) {
-        if (a[aux] != b[aux]) return false;
-        aux = (aux + 1) % a.capacity;
+    if (a.get_size() != b.get_size() || a.get_back() != b.get_back() || a.get_front() != b.get_front() || a.get_capacity() != b.get_capacity()) return false;
+    int a_f= a.get_front_index();
+    int b_f=b.get_front_index();
+    int counter = a.get_size();
+    int mask = a.get_capacity();
+    for(auto i = 0;i<counter; ++i){
+        if(a[i] !=b[i]){
+            return false;
+        }
+
     }
     return true;
 
@@ -261,16 +289,16 @@ bool operator!=(const CircularBuffer<T> &a, const CircularBuffer<T> &b) {
 ////получение элемента с проверкой
 template<class T>
 T &CircularBuffer<T>::at(int i) {
-    if (!(front <= front + i && i <= front + size - 1)) {
-        throw std::out_of_range("U WAT?");
+    if (i < 0 || i > size-1 ) {
+        throw std::out_of_range("U WAT? incorrect index");
     }
     return buffer[(front + i) % capacity];
 }
 
 template<class T>
 const T &CircularBuffer<T>::at(int i) const {
-    if (!(front <= front + i && i <= front + size - 1)) {
-        throw std::out_of_range("U WAT?");
+    if (i < 0 || i > size-1 ) {
+        throw std::out_of_range("U WAT? incorrect index");
     }
     return buffer[(front + i) % capacity];
 }
@@ -302,91 +330,135 @@ template<class T>
 
 void CircularBuffer<T>::insert(int pos, const T &item) {
     rotate(front);
-    if (reserve() == 0) {
-        T aux = buffer[back];
-        for (size_t i = back; i > pos; i--) {
-            buffer[i] = buffer[(i - 1)];
-        }
-        buffer[front] = aux;
+    if (pos < 0 || pos   > size || pos > capacity -1){
+        throw std::out_of_range("out of range");
 
     } else {
+        if (reserve() == 0) {
+            T aux = buffer[back];
+            for (size_t i = back; i > pos; i--) {
+                buffer[i] = buffer[(i - 1)];
+            }
+            buffer[front] = aux;
 
-        for (size_t i = size; i > pos; i--) {
-            buffer[i] = buffer[(i - 1)];
+        } else {
+
+            for (size_t i = size; i > pos; i--) {
+                buffer[i] = buffer[(i - 1)];
+            }
+            ++size;
         }
-        ++size;
+        buffer[pos] = item;
     }
-    buffer[pos] = item;
-
-
 }
+
 
 template<class T>
 void CircularBuffer<T>::erase(int first, int last) {
-    size_t count = last - first + 1;
-    first = (front + first) % capacity;
-    size_t counter = front + size - 1;
-    for (size_t k = 0; k < count; ++k) {
-        for (size_t i = first; i < counter; i++) {
-            std::swap(buffer[i % capacity], buffer[(i + 1) % capacity]);
+    if (empty()) {
+        throw std::underflow_error("buffer is empty");
+    } else if (first < 0 || first > size-1 ||last <0 || last > size -1) {
+        throw std::out_of_range("incorrect index");
+    } else {
+        size_t count = last - first + 1;
+        first = (front + first) % capacity;
+        size_t counter = front + size - 1;
+        for (size_t k = 0; k < count; ++k) {
+            for (size_t i = first; i < counter; i++) {
+                std::swap(buffer[i % capacity], buffer[(i + 1) % capacity]);
+            }
+        }
+
+
+        size = size >= count ? size - count : capacity + size - count;
+        if (back == front) { ///размыкание
+            back = front + size - 1;
+        } else {
+            back = back >= count ? back - count : capacity + back - count;
         }
     }
-
-    back = back >= count ? back - count : capacity + back - count;
-
-    size = size >= count ? size - count : capacity + size - count;
 }
 
 
-///исключение при удалении из пустой очереди  TODO
 template<class T>
 void CircularBuffer<T>::pop_front() {
-    if (front == back) {
-        back = back == 0 ? capacity - 1 : back - 1;
+    if (empty()) {
+        throw std::underflow_error("buffer is empty");
+
+    } else {
+        if (front == back) {
+            back = back == 0 ? capacity - 1 : back - 1;
+        }
+        front = front == capacity - 1 ? 0 : front + 1;
+        --size;
+        if (size == 0) {
+            clear();
+        }
     }
-    front = front == capacity - 1 ? 0 : front + 1;
-    --size;
 }
 
 template<class T>
 void CircularBuffer<T>::pop_back() {
-    if (front == back) {
-        front = front == capacity - 1 ? 0 : front + 1;
+    if (empty()) {
+        throw std::underflow_error("buffer is empty");
+    } else {
+        if (front == back) {
+            front = front == capacity - 1 ? 0 : front + 1;
+        }
+
+        back = back == 0 ? capacity - 1 : back - 1;
+
+        --size;
+        if (size == 0) {
+            clear();
+        }
     }
-    back = back == 0 ? capacity - 1 : back - 1;
-    --size;
+
 }
 
 
 template<class T>
 void CircularBuffer<T>::set_capacity(int new_capacity_) {
-    if(capacity != new_capacity_) {
+    if (new_capacity_ <= 0) {
+        throw std::invalid_argument(" capacity  should be >");
+    } else if (capacity != new_capacity_) {
         T *new_buff = new T[new_capacity_];
         rotate(front);
         size_t copy_size = new_capacity_ < capacity ? new_capacity_ : capacity;
         std::copy(buffer, buffer + copy_size, new_buff);
         delete[] buffer;
+        capacity = new_capacity_;
+        size = size < capacity ? size : capacity;
+        back = size - 1;
         this->buffer = new_buff;
     }
 }
 
 template<class T>
 void CircularBuffer<T>::resize(int new_size, const T &item) {
-    rotate(front);
-    capacity = new_size > capacity ? new_size : capacity;
-    T *new_buff = new T[capacity];
-    size_t copy_size;
-    if (new_size > size) {
-        copy_size = size;
-        std::copy(buffer, buffer + copy_size, new_buff);
-        std::fill(new_buff + copy_size, new_buff + new_size, item);
-    } else {
-        copy_size = new_size;
-        std::copy(buffer, buffer + copy_size, new_buff);
-    }
-    delete[] buffer;
-    this->buffer = new_buff;
-    size = new_size;
+    if (new_size < 0) {
+        throw std::invalid_argument("size should be > 0");
+    } else if (new_size != size) {
+        rotate(front);
+        size_t counter = size > new_size ? size - new_size : new_size - size;
+        if (new_size < size) {
+            for (size_t i = 0; i < counter; ++i) {
+                pop_back();
+            }
+        } else if (size < new_size) {
+            if (new_size > capacity) {
+                set_capacity(new_size);
+            }
 
+            for (size_t i = 0; i < counter; ++i) {
+                push_back(item);
+
+            }
+
+        }
+
+
+    }
 
 }
+
